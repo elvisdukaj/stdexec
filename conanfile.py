@@ -7,6 +7,7 @@ from conan.tools.scm import Git
 class StdexecPackage(ConanFile):
   name = "stdexec"
   description = "std::execution"
+  version = "0.11.0"
   author = "Michał Dominiak, Lewis Baker, Lee Howes, Kirk Shoop, Michael Garland, Eric Niebler, Bryce Adelstein Lelbach"
   topics = ("WG21", "concurrency")
   homepage = "https://github.com/NVIDIA/stdexec"
