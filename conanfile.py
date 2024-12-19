@@ -10,15 +10,16 @@ class StdexecPackage(ConanFile):
   version = "0.11.0"
   author = "Michał Dominiak, Lewis Baker, Lee Howes, Kirk Shoop, Michael Garland, Eric Niebler, Bryce Adelstein Lelbach"
   topics = ("WG21", "concurrency")
-  homepage = "https://github.com/NVIDIA/stdexec"
-  url = "https://github.com/NVIDIA/stdexec"
+  homepage = "https://github.com/elvisdukaj/stdexec"
+  url = "https://github.com/elvisdukaj/stdexec"
   license = "Apache 2.0"
 
   settings = "os", "arch", "compiler", "build_type"
   exports_sources = (
     "include/*",
     "src/*",
-    "CMakeLists.txt"
+    "CMakeLists.txt",
+    "LICENSE.txt"
   )
   generators = "CMakeToolchain", "CMakeDeps"
 
@@ -41,6 +42,7 @@ class StdexecPackage(ConanFile):
   def package(self):
     cmake = CMake(self)
     cmake.install()
+    copy(self, "*LICENSE*", src=self.source_folder, dst=self.package_folder)
 
   def package_info(self):
     self.cpp_info.set_property("cmake_file_name", "stdexec")
