@@ -18,6 +18,7 @@ class StdexecPackage(ConanFile):
   exports_sources = (
     "include/*",
     "src/*",
+    "cmake/*",
     "CMakeLists.txt",
     "LICENSE.txt"
   )
@@ -51,7 +52,12 @@ class StdexecPackage(ConanFile):
     self.cpp_info.libs = ["stdexec"]
     if self.settings.compiler == "msvc":
       self.cpp_info.cxxflags = ["/Zc:__cplusplus", "/Zc:preprocessor"]
-    else:
-      self.cpp_info.cxxflags = ["-fcoroutines", "-fconcepts-diagnostics-depth=10"]
+    
+    if self.settings.compiler == "gcc":
+      self.cpp_info.cxxflags = ["-fconcepts-diagnostics-depth=10"]
+    
+    if self.settings.compiler == "gcc" or self.settings == "clang" or self.settings.compiler == "apple-clang":
+      self.cpp_info.cxxflags = ["-fcoroutines"] 
+
 
 
